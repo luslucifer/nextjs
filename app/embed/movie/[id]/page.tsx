@@ -1,17 +1,17 @@
-// 'use client';
+'use client';
 
-// import { useParams } from 'next/navigation';
-// import axios from 'axios';
+import { useParams } from 'next/navigation';
+import axios from 'axios';
 
-// export default function PostId(){
+export default function PostId(){
 
-//   const parms = useParams();
+  const parms = useParams();
 
-//   console.log(parms);
+  console.log(parms);
 
-//   //return <main>Post {parms?.id}</main>
+  //return <main>Post {parms?.id}</main>
   
-// }
+}
 
 // export const fetchData = async () => {
 //   try {
