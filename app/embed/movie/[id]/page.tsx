@@ -1,29 +1,31 @@
-'use client';
+import { MvRes } from "./interfaces/mvkexres";
+import VideoPlayer from "@/app/components/VideoPlayer";
 
-import { useParams } from 'next/navigation';
-import axios from 'axios';
+async function getRes(id:string) {
+  const res = await fetch(`https://moviekex.online/movie/${id}`)
 
-export default function PostId(){
-
-  const parms = useParams();
-
-  console.log(parms);
-
-  //return <main>Post {parms?.id}</main>
-  
+  return res.json()
 }
 
-// export const fetchData = async () => {
-//   try {
-    
-//   const parms = useParams();
+interface params{
+  id :string
+}
 
-//     const response = await axios.get(`https://www.moviekex.online/movie/${parms?.id}`);
+export default async function PostId({params}:params){
+  const id :string = params.id
+  const res:MvRes = await getRes(id)
 
-//     console.log(response.status)
-//     return response.data; // Return the fetched data
-//   } catch (error) {
-//     console.error('Error fetching movie data:', error);
-//     throw new Error('Failed to fetch data');
-//   }
-// };
+  const video = {
+    sourceUrl:res.m3u8[0],
+  };
+
+  return <div>
+    <VideoPlayer
+    video={video}
+    key={1}
+    >
+
+    </VideoPlayer>
+  </div>
+  
+}
